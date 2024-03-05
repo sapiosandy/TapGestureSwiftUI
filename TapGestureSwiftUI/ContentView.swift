@@ -8,14 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var message = ""
+    @State private var flag = true
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text(message)
+            Image(systemName: "star.fill")
+                .font(.system(size: 200))
+                .foregroundColor(flag ? .green : .red)
+                .gesture(
+                    TapGesture()
+                        .onEnded({
+                            flag.toggle()
+                            if flag {
+                                message = "Green star"
+                            } else {
+                                message = "Red star"
+                            }
+                        })
+                )
         }
-        .padding()
     }
 }
 
